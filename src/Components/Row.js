@@ -38,7 +38,7 @@ function Rows({ title, url, originals }) {
 
     const opts = {
         height: "200",
-        width: "75%",
+        width: "250",
         playerVars: {
             autoPlay: 1,
 
