@@ -40,7 +40,7 @@
     max-height: 230px;
 }
 
-.poster:hover{
+.poster-originals:hover{
     transform: scale(1.1);
 }
 
@@ -59,12 +59,16 @@
     }
     .row-posters{
         padding: 10px;
+        padding-left: 1px;
         padding-top: 7px;
     }
     .poster{
         width: 40%;
         max-height: 130px;
         margin-right: 7px;
+    }
+    .poster:hover{
+        transform: none;
     }
     .poster-originals{
         max-height: 150px;
