@@ -22,7 +22,6 @@ function Rows({ title, url, originals }) {
     }, [url]);
 
     const handleClick = (movie) => {
-
         setselectedMovie(movie)
         if (selectedMovie === movie) {
             setOpen(false)
@@ -33,13 +32,13 @@ function Rows({ title, url, originals }) {
                 .then(url => {
                     const urlparams = new URLSearchParams(new URL(url).search)
                     setTrailerUrl(urlparams.get('v'))
-                }).catch(error => console.log(error))
+                }).catch(setTrailerUrl(""))
         }
     }
 
     const opts = {
         height: "200",
-        width: "70%",
+        width: "75%",
         playerVars: {
             autoPlay: 1,
 
@@ -63,12 +62,23 @@ function Rows({ title, url, originals }) {
                     <div className="selectedMovie">
                         <header className="selectedMovie-image" style={{ backgroundImage: `url(${imageUrl}${selectedMovie?.backdrop_path})`, backgroundSize: "cover", backgroundPosition: "right" }}>
                             <div className="selectedMovie-content">
-                                <h1 className="selectedMovie-title">{selectedMovie?.title || selectedMovie?.name || selectedMovie?.original_name}({(selectedMovie?.first_air_date?.slice(0, 4) || selectedMovie?.release_date.slice(0, 4))})</h1>
-                                
-                        <div className="trailer"><YouTube videoId={trailerUrl} opts={opts}></YouTube></div>
-
+                                <span className="selectedMovie-title">{selectedMovie?.title || selectedMovie?.name || selectedMovie?.original_name}({(selectedMovie?.first_air_date?.slice(0, 4) || selectedMovie?.release_date.slice(0, 4))})</span>
+                                <div className="trailer">
+                                    {trailerUrl &&
+                                        <YouTube videoId={trailerUrl} opts={opts}></YouTube>
+                                    }{
+                                        trailerUrl ? "" :
+                                            <div>
+                                                <div className="selectedMovie-buttons">
+                                                    <button className="selectedMovie-button">Play</button>
+                                                    <button className="selectedMovie-button">My List</button>
+                                                </div>
+                                                <h1 className="selectedMovie-description">{(selectedMovie?.overview)}</h1>
+                                            </div>
+                                    }
+                                </div>
                             </div>
-                            
+
                         </header>
                     </div>
                     : null
