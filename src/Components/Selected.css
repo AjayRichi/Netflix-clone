@@ -7,8 +7,8 @@
 }
 
 .selectedMovie-content{
-    padding-top: 130px;
-    height: 340px;
+    padding-top: 30px;
+    height: 400px;
     background-image: linear-gradient(to left,transparent, rgba(37,37,37,0.61),#111);
     width: 100%;
 }
@@ -55,6 +55,11 @@
     font-weight: bold;
 }
 
+.trailer{
+    margin-right: 100px;
+    height: 120px;
+}
+
 @media only screen and (max-width: 600px) {
     .selectedMovie{
         height: fit-content;
@@ -63,7 +68,7 @@
         font-size: small;
     }
     .selectedMovie-content{
-        padding-top: 100px;
+        padding-top: 50px;
         height: fit-content;
         padding-bottom: 20px;
     }
