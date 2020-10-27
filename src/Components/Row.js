@@ -62,13 +62,18 @@ function Rows({ title, url, originals }) {
                     <div className="selectedMovie">
                         <header className="selectedMovie-image" style={{ backgroundImage: `url(${imageUrl}${selectedMovie?.backdrop_path})`, backgroundSize: "cover", backgroundPosition: "right" }}>
                             <div className="selectedMovie-content">
-                                <span className="selectedMovie-title">{selectedMovie?.title || selectedMovie?.name || selectedMovie?.original_name}({(selectedMovie?.first_air_date?.slice(0, 4) || selectedMovie?.release_date.slice(0, 4))})</span>
                                 <div className="trailer">
                                     {trailerUrl &&
-                                        <YouTube videoId={trailerUrl} opts={opts}></YouTube>
-                                    }{
+                                        <div>
+                                            <span className="trailer-title">{selectedMovie?.title || selectedMovie?.name || selectedMovie?.original_name}({(selectedMovie?.first_air_date?.slice(0, 4) || selectedMovie?.release_date.slice(0, 4))})</span>
+                                            <YouTube className="youtube" videoId={trailerUrl} opts={opts}></YouTube>
+                                        </div>
+                                    }
+                                </div>
+                                    {
                                         trailerUrl ? "" :
-                                            <div>
+                                            <div >
+                                                <span className="selectedMovie-title">{selectedMovie?.title || selectedMovie?.name || selectedMovie?.original_name}({(selectedMovie?.first_air_date?.slice(0, 4) || selectedMovie?.release_date.slice(0, 4))})</span>
                                                 <div className="selectedMovie-buttons">
                                                     <button className="selectedMovie-button">Play</button>
                                                     <button className="selectedMovie-button">My List</button>
@@ -76,7 +81,6 @@ function Rows({ title, url, originals }) {
                                                 <h1 className="selectedMovie-description">{(selectedMovie?.overview)}</h1>
                                             </div>
                                     }
-                                </div>
                             </div>
 
                         </header>
