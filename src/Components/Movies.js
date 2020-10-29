@@ -14,6 +14,7 @@ function Movies() {
                 <Row title="Top Rated" url={requests.fetchTopRated}/>
                 <Row title="Action" url={requests.fetchActionMovies}/>
                 <Row title="Comedy" url={requests.fetchComedyMovies}/>
+                <Row title="Animation" url={requests.fetchAnimations}/>
                 <Row title="Horror" url={requests.fetchHorrorMovies}/>
                 <Row title="Romance" url={requests.fetchRomanceMovies}/>
                 <Row title="Documentaries" url={requests.fetchDocumentaries}/>
