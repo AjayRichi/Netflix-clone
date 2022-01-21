@@ -15,6 +15,14 @@ function Banner({url}) {
         fetchData()
     },[url]);
 
+    const handleList =(movie)=>{
+        if(document.querySelector('#listbtn').textContent === "My List" ){
+            document.querySelector('#listbtn').textContent="Added"      
+        }else{
+            document.querySelector('#listbtn').textContent="My List" 
+        }
+    }
+
     function truncateString (string, maxLength = 220) {
         if (!string) return null;
         if (string.length <= maxLength) return string;
@@ -27,8 +35,8 @@ function Banner({url}) {
             <div className="banner_content">
                 <span className="banner-title">{movie?.title||movie?.name||movie?.original_name}</span>
                 <div className="banner-buttons">
-                    <button className="banner-button">Play</button>
-                    <button className="banner-button">My List</button>
+                    {/* <button className="banner-button">Play</button> */}
+                    <button className="banner-button" id='listbtn' onClick={()=>{handleList(movie)}}>My List</button>
                 </div>
                 <h1 className="banner_description">{truncateString(movie?.overview) }</h1>
             </div>
