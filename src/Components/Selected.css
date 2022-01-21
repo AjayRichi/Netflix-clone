@@ -18,18 +18,17 @@
     padding-bottom: 20px;
 }
 
-.trailer-title{
-    font-size: 1.6rem;
-    font-weight: 800;
-    display: flex;
-    padding: 20px;
-    padding-left: 0px;
+.left{
+    float: left
+}
+
+.right{
+    float: right
 }
 .youtube{
-    margin-left: 0px;
     width: 450px;
     height: 300px;
-    margin-bottom: 20px;
+    margin-right: 50px
 }
 
 .selectedMovie-description{
@@ -68,9 +67,7 @@
     font-weight: bold;
 }
 
-.trailer{
-    margin-left: 2%;
-}
+
 
 @media only screen and (max-width: 600px) {
     .selectedMovie{
