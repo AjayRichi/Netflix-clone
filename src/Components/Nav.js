@@ -1,8 +1,12 @@
-import React, {  useEffect, useState } from 'react';
+import React, {  useEffect, useState  } from 'react';
+import { useNavigate } from "react-router-dom";
 import './Nav.css'
 
 function Nav() {
     const [show,handleShow]=useState(false)
+    const [logo,handleLogo]=useState("logo")
+    const navigate =useNavigate()
+
     useEffect(()=>{
         window.addEventListener("scroll",()=>{
             if(window.scrollY>100){
@@ -13,15 +17,26 @@ function Nav() {
             window.removeEventListener("scroll",null)
         }
     },[])
-
+    
     const Play=()=>{
         new Audio("./Netflix-Intro-Sound.mp3").play()
+        handleLogo("logo-animation")
+        setTimeout(changeHandle,3000)
+    }
+
+    const changeHandle=()=>{
+        handleLogo("logo")
+    }
+
+    const profile=()=>{
+        navigate("/signin")
     }
 
         return (
             <div className={`nav ${show && "nav_black"}`}>
                 <img
-                    className="logo"
+                    id='play'
+                    className={logo}
                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/2560px-Netflix_2015_logo.svg.png"
                     alt="Netflix-logo"
                     onClick={()=>Play()}
@@ -30,9 +45,9 @@ function Nav() {
                     className="avatar"
                     src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"
                     alt="User-logo"
+                    onClick={()=>profile()}
                 />
             </div>
-
         )
 }
 export default Nav;
