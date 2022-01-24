@@ -37,6 +37,14 @@ function Rows({ title, url, originals }) {
         }
     }
 
+    const handleList =(movie)=>{
+        if(document.querySelector('#listbutton').textContent === "Watchlist +" ){
+            document.querySelector('#listbutton').textContent="Added" 
+        }else{
+            document.querySelector('#listbutton').textContent="Watchlist +" 
+        }
+    }
+
     const handleClick = (movie) => {
         setselectedMovie(movie)
         if (selectedMovie === movie) {
@@ -79,13 +87,13 @@ function Rows({ title, url, originals }) {
                 </div>
                 {open ?
                     <div className="selectedMovie">
-                        <header className="selectedMovie-image" style={{ backgroundImage: `url(${imageUrl}${selectedMovie?.backdrop_path})`, backgroundSize: "cover", backgroundPosition: "right" }}>
+                        <div className="selectedMovie-image" style={{ backgroundImage: `url(${imageUrl}${selectedMovie?.backdrop_path})` }}>
                             <div className="selectedMovie-content">
                                 <div className='left'>
                                 <span className="selectedMovie-title">{selectedMovie?.title || selectedMovie?.name || selectedMovie?.original_name}({(selectedMovie?.first_air_date?.slice(0, 4) || selectedMovie?.release_date.slice(0, 4))})</span>
                                     <div className="selectedMovie-buttons">
                                         <button id='playbtn' className="selectedMovie-button" onClick={()=>handlePlay(selectedMovie)}>Play</button>
-                                        <button className="selectedMovie-button">My List</button>
+                                        <button id='listbutton' className="selectedMovie-button" onClick={()=>handleList(selectedMovie)}>Watchlist +</button>
                                     </div>
                                     <h1 className="selectedMovie-description">{(selectedMovie?.overview)}</h1>
                                 </div>
@@ -97,7 +105,7 @@ function Rows({ title, url, originals }) {
                                     : null}
                                 </div>
                             </div>
-                        </header>
+                        </div>
                     </div>
                     : null
                 }
