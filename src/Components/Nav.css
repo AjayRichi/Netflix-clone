@@ -23,12 +23,38 @@
     cursor: pointer;
 }
 
+.logo-animation{
+    animation: netflix_style 3.5s ease-out ;
+}
+
 .avatar{
     position: fixed;
     right: 20px;
     width: 35px;
     object-fit: contain;
 }
+
+.profile{
+    position:absolute;
+    top: 60px;
+    right: 90px;
+    background-color: whitesmoke
+}
+
+@keyframes netflix_style {
+    0% {
+    transform: translateX(0px); 
+    }
+    50% {
+    transform: translateX(600px)
+    }
+    70%{
+        transform: rotateY(360deg)
+    }
+    100% {
+        
+    }
+  }
 
 @media only screen and (max-width: 600px) {
     .nav{
@@ -41,4 +67,19 @@
     .avatar{
         width: 20px;
     }
+    @keyframes netflix_style {
+        0% {
+            transform: translateX(0px); 
+            }
+            50% {
+            transform: translateX(200px)
+            }
+            70%{
+                transform: rotateY(360deg)
+            }
+            100% {
+                
+            }
+    }
   }
+
