@@ -1,116 +1,131 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios'
-import './Movies.css'
-import './Selected.css'
-import YouTube from 'react-youtube';
-import movieTrailer from 'movie-trailer'
-
-function Rows({ title, url, originals }) {
-    const [movies, setMovies] = useState([]);
-    const [selectedMovie, setselectedMovie] = useState([])
-    const [open, setOpen] = useState(false)
-    const [trailerUrl, setTrailerUrl] = useState("")
-    const [urlCheck, seturlCheck] = useState(false)
-    const baseUrl = "https://api.themoviedb.org/3"
-    const imageUrl = "https://image.tmdb.org/t/p/original"
-
-    useEffect(() => {
-        async function fetchData() {
-                await axios.get(baseUrl + url)
-                .then(
-                    request=>{
-                        setMovies(request.data.results);
-                        return request;
-                    }).catch(e=>{
-                        alert(e)
-                    })
-        }
-        fetchData()
-    }, [url]);
-
-    const handlePlay =(selectedMovie)=>{
-        if(document.querySelector('#playbtn').textContent === "Play" ){
-            seturlCheck(true) 
-            document.querySelector('#playbtn').textContent="Close"      
-        }else{
-            setOpen(false)
-        }
-    }
-
-    const handleList =(movie)=>{
-        if(document.querySelector('#listbutton').textContent === "Watchlist +" ){
-            document.querySelector('#listbutton').textContent="Added" 
-        }else{
-            document.querySelector('#listbutton').textContent="Watchlist +" 
-        }
-    }
-
-    const handleClick = (movie) => {
-        setselectedMovie(movie)
-        if (selectedMovie === movie) {
-            setOpen(false)
-            setselectedMovie([])      
-        } else {
-            seturlCheck(false)
-            movieTrailer(movie?.title || movie?.name || movie?.original_name)
-                .then(url => {
-                    const urlparams = new URLSearchParams(new URL(url).search)
-                    setTrailerUrl(urlparams.get('v'))
-                    document.querySelector('#playbtn').textContent="Play"
-                }).catch(e=>{
-                    document.querySelector('#playbtn').textContent="Close"
-                    seturlCheck(false)
-                    setTrailerUrl("")
-                })
-            setOpen(true)
-        }
-    }
-
-    const opts = {
-        height: "200",
-        width: "250",
-        playerVars: {
-            autoPlay: 1,
-        }
-    }
-
-    return (
-        <div>
-            <div className="row">
-                <span className="title">{title}</span>
-                <div className="row-posters">
-                    {movies.map((movie) => {  
-                        return (
-                            <img onClick={() => handleClick(movie)} className={`poster ${originals && 'poster-originals'}`} key={movie.id} src={`${imageUrl}${originals ? movie.poster_path : movie.backdrop_path}`} alt={movie.name}></img>
-                        )
-                    })}
-                </div>
-                {open ?
-                    <div className="selectedMovie">
-                        <div className="selectedMovie-image" style={{ backgroundImage: `url(${imageUrl}${selectedMovie?.backdrop_path})` }}>
-                            <div className="selectedMovie-content">
-                                <div className='left'>
-                                <span className="selectedMovie-title">{selectedMovie?.title || selectedMovie?.name || selectedMovie?.original_name}({(selectedMovie?.first_air_date?.slice(0, 4) || selectedMovie?.release_date.slice(0, 4))})</span>
-                                    <div className="selectedMovie-buttons">
-                                        <button id='playbtn' className="selectedMovie-button" onClick={()=>handlePlay(selectedMovie)}>Play</button>
-                                        <button id='listbutton' className="selectedMovie-button" onClick={()=>handleList(selectedMovie)}>Watchlist +</button>
-                                    </div>
-                                    <h1 className="selectedMovie-description">{(selectedMovie?.overview)}</h1>
-                                </div>
-                                <div>
-                                {urlCheck ? 
-                                        <div className='right'>
-                                            <YouTube className="youtube" videoId={trailerUrl} opts={opts}></YouTube>
-                                        </div>
-                                    : null}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    : null
-                }
-            </div>
-        </div>
-    )
+.selectedMovie{
+    color: white;
+    object-fit: contain;
+    height: fit-content;
+    width: 100%;
 }
-export default Rows;
+
+.selectedMovie-content{
+    padding-top: 30px;
+    height: 400px;
+    background-image: linear-gradient(to left,transparent, rgba(37,37,37,0.61),#111);
+    width: 100%;
+}
+.selectedMovie-title{
+    font-size: 1.6rem;
+    font-weight: 800;
+    display: flex;
+    padding-bottom: 20px;
+}
+
+.left{
+    float: left
+}
+
+.right{
+    float: right
+}
+.youtube{
+    width: 450px;
+    height: 300px;
+    margin-right: 50px
+}
+
+.selectedMovie-description{
+    font-weight: 700;
+    width: 45rem;
+    line-height: 1.3;
+    padding-top: 1rem;
+    padding-bottom: 0rem;
+    font-size: 0.9rem;
+    max-width: 450px;
+    height: 80px;
+}
+
+.selectedMovie-button{
+    cursor: pointer;
+    color: #fff;
+    outline: none;
+    border: none;
+    font-weight: 700;
+    border-radius: 0.2vw;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    background-color: rgba(51, 52, 51, 0.5)
+}
+
+.selectedMovie-button:hover{
+    color: #000;
+    background-color: #e6e6e6;
+    transition: all 0.2s;
+}
+
+.selectedMovie-image{
+    background-size: cover;
+     background-position-x: right
+}
+
+@media only screen and (max-width: 600px) {
+    .selectedMovie{
+        height: fit-content;
+    }
+    .youtube{
+        margin-left: 9px;
+        width: 90%;
+        height: 200px;
+        margin-bottom: 0px;
+        padding-top: 10px
+    }
+    
+    .selectedMovie-content{
+        padding-left: 20px;
+        width: fit-content;
+        padding-top: 10px;
+        height: fit-content;
+        padding-bottom: 30px;
+    }
+    .selectedMovie-title{
+        padding-top: 1em;
+        font-size: 1rem;
+        font-weight: 700;
+        padding-bottom: 1rem;
+    }
+    .trailer-title{
+        padding-left: 8%;
+        font-size: 1rem;
+        font-weight: 700;
+        padding-top: 0.8em;
+        padding-bottom: 0.9em;
+        
+    }
+    .selectedMovie-description{
+        font-weight: 500;
+        padding-top: 0.4rem;
+        font-size: 0.7rem;
+        width: fit-content;
+    }
+    .selectedMovie-button{
+        font-weight: 400;
+        border-radius: 0vw;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        margin-right: 0.5rem;
+        padding-top: 0.2rem;
+        padding-bottom: 0.2rem;
+    }
+   
+    .left{
+        float: none;
+    }
+    .right{
+        float: none;
+        padding-top: 10px
+    }
+
+    
+    
+    
+}
