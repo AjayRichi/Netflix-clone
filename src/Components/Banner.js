@@ -8,9 +8,13 @@ function Banner({url}) {
     const imageUrl="https://image.tmdb.org/t/p/original"
     useEffect(()=>{
         async function fetchData(){
-            const request=await axios.get(baseUrl+url);
-            setMovie(request.data.results[Math.floor( Math.random()*request.data.results.length)]);
-            return request;
+            try {
+                const request=await axios.get(baseUrl+url);
+                setMovie(request.data.results[Math.floor( Math.random()*request.data.results.length)]);
+                return request;
+              } catch(err) {
+                  throw err
+              }
         }
         fetchData()
     },[url]);
@@ -29,7 +33,6 @@ function Banner({url}) {
         return `${string.substring(0, maxLength)}...`;
       };
       
-
     return (
         <header className="banner" style={{backgroundImage:`url(${imageUrl}${movie?.backdrop_path})`,backgroundSize:"cover",backgroundPosition:"center"}}>
             <div className="banner_content">
