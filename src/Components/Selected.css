@@ -62,12 +62,11 @@
     background-color: #e6e6e6;
     transition: all 0.2s;
 }
-.rating{
-    font-size: larger;
-    font-weight: bold;
+
+.selectedMovie-image{
+    background-size: cover;
+     background-position-x: right
 }
-
-
 
 @media only screen and (max-width: 600px) {
     .selectedMovie{
@@ -78,19 +77,15 @@
         width: 90%;
         height: 200px;
         margin-bottom: 0px;
+        padding-top: 10px
     }
-    .rating{
-        font-size: small;
-    }
-    .trailer{
-        margin-left: 14%;
-    }
+    
     .selectedMovie-content{
         padding-left: 20px;
         width: fit-content;
         padding-top: 10px;
         height: fit-content;
-        padding-bottom: 20px;
+        padding-bottom: 30px;
     }
     .selectedMovie-title{
         padding-top: 1em;
@@ -108,7 +103,6 @@
     }
     .selectedMovie-description{
         font-weight: 500;
-
         padding-top: 0.4rem;
         font-size: 0.7rem;
         width: fit-content;
@@ -122,7 +116,12 @@
         padding-top: 0.2rem;
         padding-bottom: 0.2rem;
     }
-    
-    
-    
+   
+    .left{
+        float: none;
+    }
+    .right{
+        float: none;
+        padding-top: 10px
+    } 
 }
