@@ -24,7 +24,8 @@
 }
 
 .logo-animation{
-    animation: netflix_style 3.5s ease-out ;
+    animation: netflix_style 3s ease-out;
+    animation-delay: 0.5s
 }
 
 .avatar{
@@ -52,7 +53,6 @@
         transform: rotateY(360deg)
     }
     100% {
-        
     }
   }
 
