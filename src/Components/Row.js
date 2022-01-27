@@ -70,9 +70,6 @@ function Rows({ title, url, originals }) {
     const opts = {
         height: "200",
         width: "250",
-       const opts = {
-        height: "200",
-        width: "250",
         playerVars: {
             autoplay: 1,
             controls: 0,
@@ -81,7 +78,6 @@ function Rows({ title, url, originals }) {
             mute: 0,
             loop: 1
           }
-    }
     }
 
     return (
