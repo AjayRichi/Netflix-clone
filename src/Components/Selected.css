@@ -68,7 +68,7 @@
      background-position-x: right
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 1010px) {
     .selectedMovie{
         height: fit-content;
     }
@@ -123,5 +123,9 @@
     .right{
         float: none;
         padding-top: 10px
-    } 
+    }
+
+    
+    
+    
 }
