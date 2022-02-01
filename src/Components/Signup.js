@@ -32,7 +32,6 @@ function Signup() {
       passwordRef.current.value
     )
       .then((authUser) => {
-        console.log(authUser);
       })
       .catch((error) => {
         alert(error.message);
