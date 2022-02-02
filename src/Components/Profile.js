@@ -21,7 +21,7 @@ function Profile() {
         <h2>
           Welcome to your Profile
           <br/>
-          <span>{user.email}</span>
+          <span>{user.name}</span>
         </h2>
         <button className="signout" onClick={signout}>
           Sign Out
