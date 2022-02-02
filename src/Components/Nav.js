@@ -8,16 +8,16 @@ function Nav() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const unsubscribe=window.addEventListener("scroll", () => {
+    const unsubscribe = window.addEventListener("scroll", () => {
       if (window.scrollY > 100) {
         handleShow(true);
       } else handleShow(false);
     });
-    return unsubscribe;
+    return () => unsubscribe;
   }, []);
 
   const Play = () => {
-    navigate("/")
+    navigate("/");
     new Audio("./Netflix-Intro-Sound.mp3").play();
     handleLogo("logo-animation");
     setTimeout(changeHandle, 3000);
@@ -27,9 +27,9 @@ function Nav() {
     handleLogo("logo");
   };
 
-  const avatarHandle =()=>{
-    navigate("/profile")
-  }
+  const avatarHandle = () => {
+    navigate("/profile");
+  };
 
   return (
     <div className={`nav ${show && "nav_black"}`}>
@@ -44,7 +44,7 @@ function Nav() {
         className="avatar"
         src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"
         alt="User-logo"
-        onClick={()=>avatarHandle()}
+        onClick={() => avatarHandle()}
       />
     </div>
   );
