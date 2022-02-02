@@ -1,125 +1,63 @@
-.loginScreen{
-    position: relative;
-    height: 100%;
-    background: url('https://miro.medium.com/max/1400/1*5lyavS59mazOFnb55Z6znQ.png') center no-repeat;
-    background-size: cover
+import React, { useRef, useState } from "react";
+import "./LoginScreen.css";
+import Signup from "./Signup";
+
+function LoginScreen() {
+  const [signUp, setSignUp] = useState(false);
+  const [signin, setSignin] = useState(false);
+
+  const emailRef = useRef("");
+
+  const handleSubmit=(e)=>{
+    e.preventDefault();
+    setSignUp(true)
+  }
+
+  return (
+    <div className="loginScreen">
+      <div className="logicBackground">
+        <img
+          className="loginlogo"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/2560px-Netflix_2015_logo.svg.png"
+          alt="Netflix-Background"
+        ></img>
+        <button className="signin" onClick={() => setSignin(true)}>
+          Sign In
+        </button>
+        <div className="loginscreen_gradient"></div>
+        <div className="loginbody">
+          {signin ||signUp? (
+            <Signup email={emailRef.current} signin={signin} />
+          ) : (
+            <div>
+              <h1>Unlimited movies, TV shows and more.</h1>
+              <h2>Watch anywhere. Cancel anytime.</h2>
+              <h3>
+                Ready to watch? Enter your email to create or restart your
+                membership.
+              </h3>
+              <div className="loginInput">
+                <form>
+                  <input
+                    type="email"
+                    placeholder="Email Address"
+                    ref={emailRef}
+                  />
+                  <button
+                    type="submit"
+                    className="getstarted"
+                    onClick={(e) => handleSubmit(e)}
+                  >
+                    GET STARTED
+                  </button>
+                </form>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
 }
 
-.loginlogo{
-    position: fixed;
-    left: 20;
-    width: 130px;
-    object-fit: contain;
-    margin: 20px
-}
-
-.signin{
-    position: fixed;
-    right: 20px;
-    top: 20px;
-    background-color: #e50914;
-    font-size: 1rem;
-    padding: 10px 20px;
-    color: #fff;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-}
-
-.loginscreen_gradient{
-    width: 100%;
-    z-index: 1;
-    height: 100vh;
-    background:rgba(0, 0, 0, 0.4);
-    background-image: linear-gradient(
-    to top,
-    rgba(0,0,0,0.8) 0,
-    rgba(0,0,0,0) 60%,
-    rgba(0,0,0,0.8) 100%,
-    )
-}
-
-.loginbody{
-    position: absolute;
-    top: 20%;
-    z-index: 1;
-    color: #fff;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    width: 100%;
-    left: 0;
-    right: 0
-}
-
-.loginbody>div>h1{
-    font-size: 3.125rem;
-    margin-bottom: 3px
-}
-
-.loginbody>div>h2{
-    font-size: 2rem;
-    font-weight: 400;
-    margin-bottom: 20px
-}
-.loginbody>div>h3{
-    font-size: 1.3rem;
-    font-weight: 400;
-}
-
-.loginInput>form>input{
-    padding: 10px;
-    outline-width: 0;
-    height: 30px;
-    width: 30%;
-    border: none;
-    max-width: 600px;
-}
-
-.getstarted{
-    padding: 16px 20px;
-    font-size: 1rem;
-    color: #fff;
-    background-color: #e50914;
-    border: none;
-    cursor: pointer;
-    font-weight: 600
-}
-
-@media only screen and (max-width: 700px) {
-    .loginlogo{
-        width: 90px;
-    }
-    
-    .signin{
-        font-size: 0.9rem;
-        padding: 5px 14px;
-    }
-    
-    .loginbody>div>h1{
-        font-size: 1.5rem;
-        font-weight: 400
-    }
-    
-    .loginbody>div>h2{
-        font-size: 1rem;
-        font-weight: bold   
-
-    }
-    .loginbody>div>h3{
-        font-size: 0.8rem;
-        margin-left: 2px;
-        font-weight: bold;
-    }
-    
-    .loginInput>form>input{
-        padding: 10px 14px;
-        height: 11px;
-    }
-    
-    .getstarted{
-        padding: 10px 10px;
-        font-size: 0.7rem;
-        font-weight: 300
-    } 
-}
+export default LoginScreen;
