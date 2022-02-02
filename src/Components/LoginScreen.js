@@ -1,9 +1,18 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import "./LoginScreen.css";
 import Signup from "./Signup";
 
 function LoginScreen() {
+  const [signUp, setSignUp] = useState(false);
   const [signin, setSignin] = useState(false);
+
+  const emailRef = useRef("");
+
+  const handleSubmit=(e)=>{
+    e.preventDefault();
+    setSignUp(true)
+  }
+
   return (
     <div className="loginScreen">
       <div className="logicBackground">
@@ -17,10 +26,10 @@ function LoginScreen() {
         </button>
         <div className="loginscreen_gradient"></div>
         <div className="loginbody">
-          {signin ? (
-            <Signup />
+          {signin ||signUp? (
+            <Signup email={emailRef.current} signin={signin} />
           ) : (
-            <div >
+            <div>
               <h1>Unlimited movies, TV shows and more.</h1>
               <h2>Watch anywhere. Cancel anytime.</h2>
               <h3>
@@ -29,10 +38,15 @@ function LoginScreen() {
               </h3>
               <div className="loginInput">
                 <form>
-                  <input type="email" placeholder="Email Address" />
+                  <input
+                    type="email"
+                    placeholder="Email Address"
+                    ref={emailRef}
+                  />
                   <button
+                    type="submit"
                     className="getstarted"
-                    onClick={() => setSignin(true)}
+                    onClick={(e) => handleSubmit(e)}
                   >
                     GET STARTED
                   </button>
