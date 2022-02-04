@@ -1,31 +1,108 @@
-.profileScreen{
-    height: 100vh;
-    color: white;
-    background-color: #111;
+.profileScreen {
+  height: 100vh;
+  color: white;
+  background-color: #111;
 }
-.profileBody{
-    display: flex;
-    flex-direction: column;
-    width: 50%;
+.profileBody {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 40px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+.logo-avatar {
+  height: 60px;
+  width: 60px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.fa-arrow-left {
+  width: 83px;
+  height: 23px;
+  cursor: pointer;
+  font-size: 33px;
+  color: #ffffff;
+  padding-top: 20px;
+}
+
+.wishlist {
+  font-size: 25px;
+  font-weight: 500;
+}
+.signout {
+  float: right;
+  padding: 10px;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-right: 20px;
+  width: 100px;
+  font-weight: 500;
+  color: #fff;
+  background-color: #e50914;
+  border-radius: 5px;
+  border: none;
+}
+
+.profilePoster {
+    display:inline-block;
+  object-fit: contain;
+  max-height: 180px;
+  margin-right: 10px;
+  transition: 450ms;
     margin-left: auto;
-    margin-right: auto;
-    padding-top: 100px;
     text-align: center
 }
 
-.signout{
-    cursor: pointer;
+.profilePoster:hover {
+  transform: scale(1.07);
 }
 
 @media only screen and (max-width: 700px) {
-    .profileScreen{
-    height: 100vh;
-    color: white;
-    background-color: #111;
-}
-.profileBody{
-    margin-left: 100px;
-    font-size: 10px;
-}
+  .profileBody {
+    padding-top: 20px;
+    margin-left: 25%
+  }
+  .logo-avatar {
+    height: 30px;
+    width: 30px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
+  .fa-arrow-left {
+    width: 23px;
+    height: 13px;
+    font-size: 23px;
+    padding-top: 10px;
+  }
+  .welcome{
+      font-size: 15px
+  }
+
+  .wishlist {
+    font-size: 18px;
+    font-weight: 500;
+  }
+  .signout {
+    padding: 7px;
+    margin-top: 15px;
+    margin-right: 15px;
+    width: 70px;
+  }
+
+  .profilePoster {
+    display: inline;
+    max-height: 130px;
+    margin-right: auto;
+    margin-left: auto;
+    transition: 450ms;
+    
+  }
+
+  .profilePoster:hover {
+    transform: scale(1.07);
+  }
 }
