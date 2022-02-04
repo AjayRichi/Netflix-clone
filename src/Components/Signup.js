@@ -5,6 +5,7 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import "./Signup.css";
+
 import { useDispatch } from "react-redux";
 import { login } from "./features/userSlice";
 
