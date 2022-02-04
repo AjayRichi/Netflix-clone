@@ -5,6 +5,8 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import "./Signup.css";
+import { useDispatch } from "react-redux";
+import { login } from "./features/userSlice";
 
 function Signup(props) {
   const emailRef = useRef(null);
@@ -12,6 +14,7 @@ function Signup(props) {
   const nameRef = useRef(null);
   const [signInFlag, setSignIn] = useState(false);
   const [error, setError] = useState("");
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (props.email === null) {
@@ -30,7 +33,13 @@ function Signup(props) {
       passwordRef.current.value,
       nameRef.current.value
     )
-      .then(() => {})
+      .then(() => {
+        dispatch(
+          login({
+            name: nameRef.current.value,
+          })
+        );
+      })
       .catch((error) => {
         setError(error.message.slice(10, 97));
       });
@@ -42,14 +51,17 @@ function Signup(props) {
       emailRef.current.value,
       passwordRef.current.value
     )
-      .then(() => {})
+      .then(() => {
+        dispatch(
+          login({
+            name: nameRef.current.value,
+          })
+        );
+      })
       .catch((error) => {
         setError(error.message.slice(10, 97));
       });
   };
-
- 
-
 
   return (
     <div className="signup_screen">
@@ -64,7 +76,12 @@ function Signup(props) {
           </button>
           <h4>
             <span className="signup-grey">New to Netflix? </span>
-            <span className="signup_link" onClick={()=>{setSignIn(false)}}>
+            <span
+              className="signup_link"
+              onClick={() => {
+                setSignIn(false);
+              }}
+            >
               Sign Up now.
             </span>
           </h4>
@@ -81,7 +98,12 @@ function Signup(props) {
           </button>
           <h4>
             <span className="signup-grey">Already Netflixed and Chilled? </span>
-            <span className="signup_link" onClick={()=>{setSignIn(true)}}>
+            <span
+              className="signup_link"
+              onClick={() => {
+                setSignIn(true);
+              }}
+            >
               Sign In.
             </span>
           </h4>
