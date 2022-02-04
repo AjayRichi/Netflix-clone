@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Banner.css";
+import { wishlist, selectwishlist } from "./features/userSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 function Banner({ url }) {
+  const list = useSelector(selectwishlist);
   const [movie, setMovie] = useState([]);
+  const [buttonText, setbuttonText] = useState("Watchlist +");
+  const dispatch = useDispatch();
   const baseUrl = "https://api.themoviedb.org/3";
   const imageUrl = "https://image.tmdb.org/t/p/original";
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -23,12 +29,33 @@ function Banner({ url }) {
     fetchData();
   }, [url]);
 
+  useEffect(() => {
+    list.forEach((item) => {
+      if (item.movie === movie.name) {
+        if (item.done === "Watchlist +") {
+          setbuttonText("Added");
+        } else {
+          setbuttonText("Watchlist +");
+        }
+      }
+    });
+  }, [list,movie]);
+
   const handleList = (movie) => {
     if (document.querySelector("#listbtn").textContent === "Watchlist +") {
-      document.querySelector("#listbtn").textContent = "Added";
+      setbuttonText("Added");
     } else {
-      document.querySelector("#listbtn").textContent = "Watchlist +";
+      setbuttonText("Watchlist +");
     }
+    dispatch(
+      wishlist({
+        wishlist: {
+          movie: movie.name,
+          done: document.querySelector("#listbtn").textContent,
+          image:imageUrl+movie.poster_path
+        },
+      })
+    );
   };
 
   function truncateString(string, maxLength = 220) {
@@ -58,7 +85,7 @@ function Banner({ url }) {
               handleList(movie);
             }}
           >
-            Watchlist +
+            {buttonText}
           </button>
         </div>
         <h1 className="banner_description">
