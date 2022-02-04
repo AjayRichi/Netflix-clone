@@ -2,11 +2,10 @@ import React from "react";
 import "./Profile.css";
 import { auth } from "../Firebase";
 import { useSelector } from "react-redux";
-import { selectUser, selectwishlist } from "./features/userSlice";
+import { selectwishlist } from "./features/userSlice";
 import { useNavigate } from "react-router-dom";
 
 function Profile() {
-  const user = useSelector(selectUser);
   const wishlist = useSelector(selectwishlist);
   const navigate = useNavigate();
   const signout = () => {
