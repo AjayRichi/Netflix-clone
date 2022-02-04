@@ -17,7 +17,6 @@ function Nav() {
   }, []);
 
   const Play = () => {
-    navigate("/");
     new Audio("./Netflix-Intro-Sound.mp3").play();
     handleLogo("logo-animation");
     setTimeout(changeHandle, 3000);
