@@ -4,16 +4,19 @@ import "./Movies.css";
 import "./Selected.css";
 import YouTube from "react-youtube";
 import movieTrailer from "movie-trailer";
+import { wishlist, selectwishlist } from "./features/userSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 function Rows({ title, url, originals }) {
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setselectedMovie] = useState([]);
+  const list = useSelector(selectwishlist);
+  const dispatch = useDispatch();
+  const [buttonText, setbuttonText] = useState("Watchlist +");
   const [open, setOpen] = useState(false);
   const [trailerUrl, setTrailerUrl] = useState("");
-  const [urlCheck, seturlCheck] = useState(false);
   const baseUrl = "https://api.themoviedb.org/3";
   const imageUrl = "https://image.tmdb.org/t/p/original";
-
 
   useEffect(() => {
     async function fetchData() {
@@ -24,28 +27,33 @@ function Rows({ title, url, originals }) {
           return request;
         })
         .catch((e) => {
-          console.log(e);
           throw e;
         });
     }
     fetchData();
   }, [url]);
 
-  const handlePlay = (selectedMovie) => {
-    if (document.querySelector("#playbtn").textContent === "Play") {
-      seturlCheck(true);
-      document.querySelector("#playbtn").textContent = "Close";
-    } else {
-      setOpen(false);
-    }
-  };
-
   const handleList = (movie) => {
     if (document.querySelector("#listbutton").textContent === "Watchlist +") {
-      document.querySelector("#listbutton").textContent = "Added";
+      setbuttonText("Added");
     } else {
-      document.querySelector("#listbutton").textContent = "Watchlist +";
+      setbuttonText("Watchlist +");
     }
+    let moviename=""
+    if(originals){
+       moviename=movie.name
+    }else{
+       moviename=movie.title
+    }
+    dispatch(
+      wishlist({
+        wishlist: {
+          movie: moviename,
+          done: document.querySelector("#listbutton").textContent,
+          image:imageUrl+movie.poster_path
+        },
+      })
+    );
   };
 
   const handleClick = (movie) => {
@@ -54,16 +62,27 @@ function Rows({ title, url, originals }) {
       setOpen(false);
       setselectedMovie([]);
     } else {
-      seturlCheck(false);
+      let count=0
+      list.forEach((item) => {
+        if (item.movie === (movie?.title || movie?.name || movie?.original_name )) {
+          if (item.done === "Watchlist +") {
+            setbuttonText("Added");
+          } else {
+            setbuttonText("Watchlist +");
+          }
+          count+=1
+        }
+      });
+      if(count===0){
+        setbuttonText("Watchlist +")
+
+      }
       movieTrailer(movie?.title || movie?.name || movie?.original_name)
         .then((url) => {
           const urlparams = new URLSearchParams(new URL(url).search);
           setTrailerUrl(urlparams.get("v"));
-          document.querySelector("#playbtn").textContent = "Play";
         })
         .catch((e) => {
-          document.querySelector("#playbtn").textContent = "Close";
-          seturlCheck(false);
           setTrailerUrl("");
         });
       setOpen(true);
@@ -71,8 +90,6 @@ function Rows({ title, url, originals }) {
   };
 
   const opts = {
-    height: "200",
-    width: "250",
     playerVars: {
       autoplay: 1,
       controls: 0,
@@ -123,18 +140,11 @@ function Rows({ title, url, originals }) {
                   </span>
                   <div className="selectedMovie-buttons">
                     <button
-                      id="playbtn"
-                      className="selectedMovie-button"
-                      onClick={() => handlePlay(selectedMovie)}
-                    >
-                      Play
-                    </button>
-                    <button
                       id="listbutton"
                       className="selectedMovie-button"
                       onClick={() => handleList(selectedMovie)}
                     >
-                      Watchlist +
+                      {buttonText}
                     </button>
                   </div>
                   <h1 className="selectedMovie-description">
@@ -142,7 +152,6 @@ function Rows({ title, url, originals }) {
                   </h1>
                 </div>
                 <div>
-                  {urlCheck ? (
                     <div className="right">
                       <YouTube
                         className="youtube"
@@ -150,7 +159,6 @@ function Rows({ title, url, originals }) {
                         opts={opts}
                       ></YouTube>
                     </div>
-                  ) : null}
                 </div>
               </div>
             </div>
