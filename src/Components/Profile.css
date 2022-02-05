@@ -67,6 +67,11 @@
 .profilePoster:hover {
   transform: scale(1.07);
 }
+.empty{
+  text-align: center;
+
+}
+
 
 @media only screen and (max-width: 700px) {
   .profileBody {
@@ -93,6 +98,10 @@
   .wishlist {
     font-size: 18px;
     font-weight: 500;
+  }
+  .empty{
+    display: block;
+    text-align: center
   }
   .signout {
     padding: 7px;
