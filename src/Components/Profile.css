@@ -1,0 +1,120 @@
+.profileScreen {
+  height: 100vh;
+  color: white;
+  background-color: #111;
+}
+.profileBody {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 30px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+.logo-avatar {
+  height: 60px;
+  width: 60px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.fa-arrow-left {
+  width: 83px;
+  height: 23px;
+  cursor: pointer;
+  font-size: 33px;
+  color: #ffffff;
+  padding-top: 20px;
+}
+
+.wishlist {
+  font-size: 25px;
+  font-weight: 500;
+}
+.welcome {
+  margin-top: 5px;
+  margin-bottom: 0px;
+}
+.signout {
+  float: right;
+  padding: 10px;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-right: 20px;
+  width: 100px;
+  font-weight: 500;
+  color: #fff;
+  background-color: #e50914;
+  border-radius: 5px;
+  border: none;
+}
+
+.profilePoster {
+  object-fit: contain;
+  max-height: 180px;
+  margin-right: 8px;
+  transition: 450ms;
+  margin-bottom: 10px;
+  border-radius: 5px
+}
+.wishlistPosters{
+  display: block;
+  text-align: center;
+  margin: 0px 20px 20px 20px
+}
+
+.profilePoster:hover {
+  transform: scale(1.07);
+}
+
+@media only screen and (max-width: 700px) {
+  .profileBody {
+    padding-top: 20px;
+    margin-left: 25%;
+  }
+  .logo-avatar {
+    height: 30px;
+    width: 30px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .fa-arrow-left {
+    width: 23px;
+    height: 13px;
+    font-size: 23px;
+    padding-top: 10px;
+  }
+  .welcome {
+    font-size: 15px;
+  }
+
+  .wishlist {
+    font-size: 18px;
+    font-weight: 500;
+  }
+  .signout {
+    padding: 7px;
+    margin-top: 15px;
+    margin-right: 15px;
+    width: 70px;
+  }
+
+  .profilePoster {
+    display: inline;
+    max-height: 135px;
+    transition: 450ms;
+    margin-right: 5px
+  }
+
+  .profilePoster:hover {
+    transform: scale(1.17);
+  }
+  .wishlistPosters{
+    margin-left: 8px;
+    margin-right: 0px;
+    margin-bottom:20px;
+    margin-top: 0px
+  }
+}

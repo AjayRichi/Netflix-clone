@@ -1,5 +1,6 @@
 import React from 'react';
 import Banner from './Banner';
+import Footer from './Footer';
 import Nav from './Nav';
 import requests from './requests'
 import Row from './Row'
@@ -16,8 +17,9 @@ function Movies() {
                 <Row title="Comedy" url={requests.fetchComedyMovies}/>
                 <Row title="Animation" url={requests.fetchAnimations}/>
                 <Row title="Horror" url={requests.fetchHorrorMovies}/>
-                <Row title="Romance" url={requests.fetchRomanceMovies}/>
                 <Row title="Documentaries" url={requests.fetchDocumentaries}/>
+                <Row title="Romance" url={requests.fetchRomanceMovies}/>
+                <Footer></Footer>
             </div>
 
         )

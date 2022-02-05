@@ -12,15 +12,33 @@
 }
 
 .row-posters{
+    position: relative;
+
     display: flex;
     overflow-y: hidden;
-    overflow-x: scroll ;
     padding: 15px;
     cursor: pointer;
 }
 
+.container{
+    display: flex;
+    width: max-content;
+
+}
+
+.row-posters .fa-chevron-right,
+.row-posters .fa-chevron-left{
+    height: 100%;
+    background-color: #111;
+    color: white;
+}
+.row-posters .fa-chevron-right{
+    position: absolute;
+    left: 0
+}
+
 .row-posters::-webkit-scrollbar{
-    display: none;
+    display:flex;
 }
 
 .poster{
@@ -49,7 +67,8 @@
     background-position: center;
 }
 
-@media only screen and (max-width: 600px) {
+
+@media only screen and (max-width: 700px) {
     .row{
         margin: 12px;
     }
