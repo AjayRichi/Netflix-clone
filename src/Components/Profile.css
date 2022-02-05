@@ -3,6 +3,7 @@
   max-height: fit-content;
   color: white;
   background-color: #111;
+margin-bottom: 20px;
 }
 .profileBody {
   display: flex;
