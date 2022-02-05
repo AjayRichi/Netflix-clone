@@ -52,7 +52,7 @@
 
 .profilePoster {
   object-fit: contain;
-  max-height: 180px;
+  max-height: 200px;
   margin-right: 8px;
   transition: 450ms;
   margin-bottom: 10px;
@@ -112,7 +112,7 @@
 
   .profilePoster {
     display: inline;
-    max-height: 135px;
+    max-height: 140px;
     transition: 450ms;
     margin-right: 5px
   }

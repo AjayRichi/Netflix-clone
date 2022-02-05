@@ -30,8 +30,7 @@ function Profile() {
           src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"
           alt="User-logo"
         />
-        <h2 className="welcome">Welcome to your Profile</h2>
-        <p className="welcome">{user.email}</p>
+        <h2 className="welcome">{user.email}</h2>
       </div>
       {wishlist.length !== 0 ? (
         <div className="wishlistPosters">
