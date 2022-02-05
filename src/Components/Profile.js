@@ -16,6 +16,7 @@ function Profile() {
   const handleBack = () => {
     window.history.back();
   };
+  
 
   return (
     <div className="profileScreen">
@@ -39,10 +40,10 @@ function Profile() {
               ""
             ) : (
               <img
-                key={movie.name}
+                key={movie.movie}
                 className="profilePoster"
                 src={`${movie.image}`}
-                alt={movie.name}
+                alt={movie.movie}
               />
             );
           })}
