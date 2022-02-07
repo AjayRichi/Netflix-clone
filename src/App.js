@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Movies from "./Components/Movies";
-import LoginScreen from "./Components/LoginScreen";
+import Movies from "./Components/Home/Movies";
+import LoginScreen from "./Components//Login/LoginScreen";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect } from "react";
 import { auth } from "./Firebase";
 import { login, logout, selectUser } from "./Components/features/userSlice";
-import Profile from "./Components/Profile";
+import Profile from "./Components/Profile/Profile";
 
 function App() {
   const user = useSelector(selectUser);

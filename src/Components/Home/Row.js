@@ -4,7 +4,7 @@ import "./Movies.css";
 import "./Selected.css";
 import YouTube from "react-youtube";
 import movieTrailer from "movie-trailer";
-import { wishlist, selectwishlist } from "./features/userSlice";
+import { wishlist, selectwishlist } from "../features/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 function Rows({ title, url, originals }) {

@@ -1,8 +1,8 @@
 import React from "react";
 import "./Profile.css";
-import { auth } from "../Firebase";
+import { auth } from "../../Firebase";
 import { useSelector } from "react-redux";
-import { selectUser, selectwishlist } from "./features/userSlice";
+import { selectUser, selectwishlist } from "../features/userSlice";
 import { useNavigate } from "react-router-dom";
 
 function Profile() {

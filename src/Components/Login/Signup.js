@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
-import { auth } from "../Firebase";
+import { auth } from "../../Firebase";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import "./Signup.css";
 import { useDispatch } from "react-redux";
-import { login } from "./features/userSlice";
+import { login } from "../features/userSlice";
 
 function Signup(props) {
   const emailRef = useRef(null);

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import "./Banner.css";
-import { wishlist, selectwishlist } from "./features/userSlice";
+import { wishlist, selectwishlist } from "../features/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 function Banner({ url }) {
