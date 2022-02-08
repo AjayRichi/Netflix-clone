@@ -3,7 +3,7 @@
   max-height: fit-content;
   color: white;
   background-color: #111;
-margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 .profileBody {
   display: flex;
@@ -58,22 +58,20 @@ margin-bottom: 20px;
   margin-right: 8px;
   transition: 450ms;
   margin-bottom: 10px;
-  border-radius: 5px
+  border-radius: 5px;
 }
-.wishlistPosters{
+.wishlistPosters {
   display: block;
   text-align: center;
-  margin: 0px 20px 20px 20px
+  margin: 0px 20px 20px 20px;
 }
 
 .profilePoster:hover {
   transform: scale(1.07);
 }
-.empty{
+.empty {
   text-align: center;
-
 }
-
 
 @media only screen and (max-width: 700px) {
   .profileBody {
@@ -101,9 +99,9 @@ margin-bottom: 20px;
     font-size: 18px;
     font-weight: 500;
   }
-  .empty{
+  .empty {
     display: block;
-    text-align: center
+    text-align: center;
   }
   .signout {
     padding: 7px;
@@ -115,17 +113,17 @@ margin-bottom: 20px;
   .profilePoster {
     display: inline;
     max-height: 140px;
-    transition: 450ms;
-    margin-right: 5px
+    transition: all 450ms;
+    margin-right: 5px;
   }
 
   .profilePoster:hover {
     transform: scale(1.17);
   }
-  .wishlistPosters{
+  .wishlistPosters {
     margin-left: 8px;
     margin-right: 0px;
-    margin-bottom:20px;
-    margin-top: 0px
+    margin-bottom: 20px;
+    margin-top: 0px;
   }
 }

@@ -32,7 +32,7 @@ function Footer() {
           </div>
 
           <div>
-            <i className="fa fa-envelope" ></i>
+            <i className="fa fa-envelope"></i>
             <p>
               <a href="mailto:ajayrichi111@gmail.com">ajayrichi111@gmail.com</a>
             </p>
@@ -42,16 +42,32 @@ function Footer() {
         <div className="footer-right">
           <p className="footer-about">Social Media</p>
           <div className="footer-icons">
-            <a href="https://www.instagram.com/ajay_richi/" target="_blank" rel="noreferrer">
+            <a
+              href="https://www.instagram.com/ajay_richi/"
+              target="_blank"
+              rel="noreferrer"
+            >
               <i className="fa fa-instagram"></i>
             </a>
-            <a href="https://www.facebook.com/aJayrichi/" target="_blank" rel="noreferrer">
+            <a
+              href="https://www.facebook.com/aJayrichi/"
+              target="_blank"
+              rel="noreferrer"
+            >
               <i className="fa fa-facebook"></i>
             </a>
-            <a href="https://www.linkedin.com/in/ajay-m1997" target="_blank" rel="noreferrer" >
+            <a
+              href="https://www.linkedin.com/in/ajay-m1997"
+              target="_blank"
+              rel="noreferrer"
+            >
               <i className="fa fa-linkedin"></i>
             </a>
-            <a href="https://github.com/AjayRichi/Netflix-clone" target="_blank" rel="noreferrer">
+            <a
+              href="https://github.com/AjayRichi/Netflix-clone"
+              target="_blank"
+              rel="noreferrer"
+            >
               <i className="fa fa-github"></i>
             </a>
           </div>
