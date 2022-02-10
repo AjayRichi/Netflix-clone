@@ -106,7 +106,7 @@ function Search() {
         ) : (
           <div className="errorMessage">
               <img src={monica} alt="Oops. We haven't got that."/>
-            <p>Try searching for another movies,shows,actot,director,genre.</p>
+            <p>Try searching for another movies,shows,genre...</p>
           </div>
         )}
       </div>
