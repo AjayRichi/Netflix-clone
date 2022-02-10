@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import "./Search.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import monica from './monica.gif'
 
 function Search() {
   const navigate = useNavigate();
@@ -33,10 +34,12 @@ function Search() {
       await axios
         .get(url)
         .then((result) => {
-            console.log(result.data.results)
-          setMovies(result.data.results.slice(0,18));
+          console.log(result.data.results);
+          setMovies(result.data.results.slice(0, 18));
         })
-        .catch((e) => {});
+        .catch((e) => {
+          throw e
+        });
     }
     fetchData();
     return () => {
@@ -87,16 +90,25 @@ function Search() {
       </nav>
 
       <div className="searchBody">
-        {movies.map((movie) => {
-          return (
-            <img
-              key={movie.id}
-              className="profilePoster"
-              src={`${imageUrl + movie.poster_path}`}
-              alt={movie.title}
-            />
-          );
-        })}
+        {movies.length !== 0 ? (
+          <div>
+            {movies.map((movie) => {
+              return (
+                <img
+                  key={movie.id}
+                  className="profilePoster"
+                  src={`${imageUrl + movie.poster_path}`}
+                  alt={movie.title}
+                />
+              );
+            })}
+          </div>
+        ) : (
+          <div className="errorMessage">
+              <img src={monica} alt="Oops. We haven't got that."/>
+            <p>Try searching for another movies,shows,actot,director,genre.</p>
+          </div>
+        )}
       </div>
     </div>
   );

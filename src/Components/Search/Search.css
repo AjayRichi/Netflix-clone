@@ -55,6 +55,12 @@
   margin-left: 10px;
 }
 
+.errorMessage {
+  padding: 50px;
+  text-align: center
+}
+
+
 @media only screen and (max-width: 700px) {
   .search_Container {
     top: 13px;
@@ -87,8 +93,14 @@
     height: 13px;
     font-size: 23px;
     padding: 0px;
-    margin-left: 0
-
-    
+    margin-left: 0;
   }
+  .errorMessage {
+    padding-top: 40px;
+  }
+  .errorMessage>img{
+      width: 270px;
+      margin: auto
+  }
+ 
 }
