@@ -16,12 +16,13 @@ function Profile() {
   const handleBack = () => {
     window.history.back();
   };
-  
 
   return (
     <div className="profileScreen">
-      <i className="fa fa-arrow-left" onClick={handleBack}></i>
-      <span className="wishlist">Profile & Wishlist</span>
+      <div className="back">
+        <i className="fa fa-arrow-left" onClick={handleBack}></i>
+        <span className="wishlist">Profile & Wishlist</span>
+      </div>
       <button className="signout" onClick={signout}>
         Sign Out
       </button>
@@ -36,11 +37,11 @@ function Profile() {
       {wishlist.length !== 0 ? (
         <div className="wishlistPosters">
           {wishlist.map((movie) => {
+            console.log(movie);
             return movie.done === "Added" ? (
               ""
             ) : (
               <img
-                key={movie.movie}
                 className="profilePoster"
                 src={`${movie.image}`}
                 alt={movie.movie}

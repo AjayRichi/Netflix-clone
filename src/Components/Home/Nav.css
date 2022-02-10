@@ -27,6 +27,7 @@
 }
 
 .avatar {
+  top: 20px;
   position: fixed;
   right: 20px;
   width: 35px;
@@ -39,6 +40,26 @@
   top: 60px;
   right: 90px;
   background-color: whitesmoke;
+}
+
+.searchContainer {
+  position: fixed;
+  right: 80px;
+}
+.fa-search {
+  position: absolute;
+  padding: 8px;
+  right: 5px;
+  cursor: pointer;
+  color: #ccc
+}
+.searchInput {
+  outline: none;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  color: #ccc;
+  background-color: #111
 }
 
 @keyframes netflix_style {
@@ -65,7 +86,26 @@
   }
   .avatar {
     width: 20px;
+    top:15px;
+    right: 15px
   }
+  .searchContainer {
+    top: 13px;
+    right: 45px;
+  }
+  .fa-search {
+    padding: 5px;
+    right: 5px;
+    font-size: smaller;
+  }
+  .searchInput {
+    font-weight: 300;
+    width: 100px;
+    padding: 3px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+  }
+
   @keyframes netflix_style {
     0% {
       transform: translateX(0px);

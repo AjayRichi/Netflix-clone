@@ -6,6 +6,7 @@ import React, { useEffect } from "react";
 import { auth } from "./Firebase";
 import { login, logout, selectUser } from "./Components/features/userSlice";
 import Profile from "./Components/Profile/Profile";
+import Search from "./Components/Search/Search";
 
 function App() {
   const user = useSelector(selectUser);
@@ -17,7 +18,7 @@ function App() {
         dispatch(
           login({
             uid: userAuth.uid,
-            email:userAuth.email
+            email: userAuth.email,
           })
         );
       } else {
@@ -36,6 +37,7 @@ function App() {
           ) : (
             <React.Fragment>
               <Route exact path="/" element={<Movies />}></Route>
+              <Route path="/search" element={<Search />}></Route>
               <Route path="/profile" element={<Profile />}></Route>
             </React.Fragment>
           )}

@@ -6,15 +6,17 @@ function Nav() {
   const [show, handleShow] = useState(false);
   const [logo, handleLogo] = useState("logo");
   const navigate = useNavigate();
-  const mountedRef=useRef(true)
+  const mountedRef = useRef(true);
 
   useEffect(() => {
-     window.addEventListener("scroll", () => {
+    window.addEventListener("scroll", () => {
       if (window.scrollY > 100) {
         handleShow(true);
       } else handleShow(false);
     });
-    return () => {mountedRef.current=false};
+    return () => {
+      mountedRef.current = false;
+    };
   }, []);
 
   const Play = () => {
@@ -31,6 +33,11 @@ function Nav() {
     navigate("/profile");
   };
 
+  const handleSearch=()=>{
+    navigate("/search");
+
+  }
+
   return (
     <div className={`nav ${show && "nav_black"}`}>
       <img
@@ -40,6 +47,16 @@ function Nav() {
         alt="Netflix-logo"
         onClick={() => Play()}
       />
+      <form className="searchContainer" >
+        <i className="fas fa-search" onClick={()=>handleSearch()}></i>
+        <input
+          className="searchInput"
+          type="text"
+          placeholder="Search..."
+          name="search"
+          onClick={()=>handleSearch()}
+        />
+      </form>
       <img
         className="avatar"
         src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"

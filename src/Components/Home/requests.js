@@ -10,6 +10,7 @@ const requests={
     fetchRomanceMovies:`/discover/movie?api_key=${API}&with_genres=10749`,
     fetchDocumentaries:`/discover/movie?api_key=${API}&with_genres=99`,
     fetchAnimations:`/discover/movie?api_key=${API}&with_genres=16`,
+    fetchSearch:`/search/movie?api_key=${API}&query=Jack+Reacher`
 
 }
 
