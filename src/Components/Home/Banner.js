@@ -22,9 +22,8 @@ function Banner({ url }) {
             Math.floor(Math.random() * request.data.results.length)
           ]
         );
-        return request;
       } catch (err) {
-        throw err;
+        setMovie([]);
       }
     }
     fetchData();

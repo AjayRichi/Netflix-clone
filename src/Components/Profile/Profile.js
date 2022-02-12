@@ -37,7 +37,6 @@ function Profile() {
       {wishlist.length !== 0 ? (
         <div className="wishlistPosters">
           {wishlist.map((movie) => {
-            console.log(movie);
             return movie.done === "Added" ? (
               ""
             ) : (
@@ -45,6 +44,7 @@ function Profile() {
                 className="profilePoster"
                 src={`${movie.image}`}
                 alt={movie.movie}
+                key={movie.movie}
               />
             );
           })}

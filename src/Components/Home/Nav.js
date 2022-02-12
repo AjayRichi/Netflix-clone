@@ -33,10 +33,9 @@ function Nav() {
     navigate("/profile");
   };
 
-  const handleSearch=()=>{
+  const handleSearch = () => {
     navigate("/search");
-
-  }
+  };
 
   return (
     <div className={`nav ${show && "nav_black"}`}>
@@ -47,14 +46,14 @@ function Nav() {
         alt="Netflix-logo"
         onClick={() => Play()}
       />
-      <form className="searchContainer" >
-        <i className="fas fa-search" onClick={()=>handleSearch()}></i>
+      <form className="searchContainer">
+        <i className="fas fa-search" onClick={() => handleSearch()}></i>
         <input
           className="searchInput"
           type="text"
           placeholder="Search..."
           name="search"
-          onClick={()=>handleSearch()}
+          onClick={() => handleSearch()}
         />
       </form>
       <img

@@ -51,7 +51,7 @@
   padding: 8px;
   right: 5px;
   cursor: pointer;
-  color: #ccc
+  color: #ccc;
 }
 .searchInput {
   outline: none;
@@ -59,7 +59,7 @@
   border-radius: 5px;
   border: 1px solid #ccc;
   color: #ccc;
-  background-color: #111
+  background-color: #111;
 }
 
 @keyframes netflix_style {
@@ -86,8 +86,8 @@
   }
   .avatar {
     width: 20px;
-    top:15px;
-    right: 15px
+    top: 15px;
+    right: 15px;
   }
   .searchContainer {
     top: 13px;

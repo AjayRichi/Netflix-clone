@@ -12,7 +12,7 @@ function Signup(props) {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const nameRef = useRef(null);
-  const mountedRef =useRef(true)
+  const mountedRef = useRef(true);
   const [signInFlag, setSignIn] = useState(false);
   const [error, setError] = useState("");
   const dispatch = useDispatch();
@@ -24,9 +24,9 @@ function Signup(props) {
       emailRef.current.value = props.email.value;
       setSignIn(props.signin);
     }
-    return ()=>{
-      mountedRef.current=false
-    }
+    return () => {
+      mountedRef.current = false;
+    };
   }, [props.email, props.signin]);
 
   const register = (e) => {
@@ -75,9 +75,9 @@ function Signup(props) {
     setSignIn(true);
     setError("");
   };
-  const handleChange=()=>{
-    setError("")
-  }
+  const handleChange = () => {
+    setError("");
+  };
 
   return (
     <div className="signup_screen">
@@ -90,14 +90,14 @@ function Signup(props) {
             placeholder="Email Address"
             type="email"
             required
-            onChange={()=>handleChange()}
+            onChange={() => handleChange()}
           />
           <input
             ref={passwordRef}
             placeholder="Password"
             type="password"
             required
-            onChange={()=>handleChange()}
+            onChange={() => handleChange()}
           />
           <button type="submit" onClick={signIn}>
             Sign In
@@ -123,16 +123,21 @@ function Signup(props) {
             placeholder="Email Address"
             type="email"
             required
-            onChange={()=>handleChange()}
+            onChange={() => handleChange()}
           />
           <input
             ref={passwordRef}
             placeholder="Password"
             type="password"
             required
-            onChange={()=>handleChange()}
+            onChange={() => handleChange()}
           />
-          <input ref={nameRef} placeholder="Name" type="name"  onChange={()=>handleChange()}/>
+          <input
+            ref={nameRef}
+            placeholder="Name"
+            type="name"
+            onChange={() => handleChange()}
+          />
           <button type="submit" onClick={register}>
             Sign Up
           </button>

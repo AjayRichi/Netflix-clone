@@ -21,15 +21,12 @@ function Rows({ title, url, originals }) {
 
   useEffect(() => {
     async function fetchData() {
-      await axios
-        .get(baseUrl + url)
-        .then((request) => {
-          setMovies(request.data.results);
-          return request;
-        })
-        .catch((e) => {
-          throw e;
-        });
+      try {
+        const request = await axios.get(baseUrl + url);
+        setMovies(request.data.results);
+      } catch (err) {
+        setMovies([]);
+      }
     }
     fetchData();
     return () => {
@@ -82,14 +79,19 @@ function Rows({ title, url, originals }) {
       if (count === 0) {
         setbuttonText("Watchlist +");
       }
-      movieTrailer(movie?.title || movie?.name || movie?.original_name)
-        .then((url) => {
-          const urlparams = new URLSearchParams(new URL(url).search);
-          setTrailerUrl(urlparams.get("v"));
-        })
-        .catch((e) => {
-          setTrailerUrl("");
-        });
+      try {
+        movieTrailer(movie?.title || movie?.name || movie?.original_name)
+          .then((url) => {
+            const urlparams = new URLSearchParams(new URL(url).search);
+            setTrailerUrl(urlparams.get("v"));
+          })
+          .catch((e) => {
+            setTrailerUrl("");
+          });
+      } catch (err) {
+        setTrailerUrl("");
+      }
+
       setOpen(true);
     }
   };
@@ -109,21 +111,26 @@ function Rows({ title, url, originals }) {
     <div>
       <div className="row">
         <span className="title">{title}</span>
-        <div className="row-posters">
-          {movies.map((movie) => {
-            return (
-              <img
-                onClick={() => handleClick(movie)}
-                className={`poster ${originals && "poster-originals"}`}
-                key={movie.id}
-                src={`${imageUrl}${
-                  originals ? movie.poster_path : movie.backdrop_path
-                }`}
-                alt={movie.name}
-              ></img>
-            );
-          })}
-        </div>
+        {movies === [] || movies === undefined ? (
+          <div style={{ color: "red" }}>Ooops...Network Error</div>
+        ) : (
+          <div className="row-posters">
+            {movies.map((movie) => {
+              return (
+                <img
+                  onClick={() => handleClick(movie)}
+                  className={`poster ${originals && "poster-originals"}`}
+                  key={movie.id}
+                  src={`${imageUrl}${
+                    originals ? movie.poster_path : movie.backdrop_path
+                  }`}
+                  alt={movie.name}
+                ></img>
+              );
+            })}
+          </div>
+        )}
+
         {open ? (
           <div className="selectedMovie">
             <div

@@ -8,10 +8,10 @@ function LoginScreen() {
 
   const emailRef = useRef("");
 
-  const handleSubmit=(e)=>{
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setSignUp(true)
-  }
+    setSignUp(true);
+  };
 
   return (
     <div className="loginScreen">
@@ -26,7 +26,7 @@ function LoginScreen() {
         </button>
         <div className="loginscreen_gradient"></div>
         <div className="loginbody">
-          {signin ||signUp? (
+          {signin || signUp ? (
             <Signup email={emailRef.current} signin={signin} />
           ) : (
             <div>

@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import "./Search.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import monica from './monica.gif'
+import monica from "./monica.gif";
 
 function Search() {
   const navigate = useNavigate();
@@ -31,15 +31,12 @@ function Search() {
 
   useEffect(() => {
     async function fetchData() {
-      await axios
-        .get(url)
-        .then((result) => {
-          console.log(result.data.results);
-          setMovies(result.data.results.slice(0, 18));
-        })
-        .catch((e) => {
-          throw e
-        });
+      try {
+        const result = await axios.get(url);
+        setMovies(result.data.results.slice(0, 18));
+      } catch (err) {
+        setMovies([]);
+      }
     }
     fetchData();
     return () => {
@@ -105,7 +102,7 @@ function Search() {
           </div>
         ) : (
           <div className="errorMessage">
-              <img src={monica} alt="Oops. We haven't got that."/>
+            <img src={monica} alt="Oops. We haven't got that." />
             <p>Try searching for another movies,shows,genre...</p>
           </div>
         )}
