@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Nav.css";
+import {memo} from 'react'
+
 
 function Nav() {
   const [show, handleShow] = useState(false);
@@ -65,4 +67,4 @@ function Nav() {
     </div>
   );
 }
-export default Nav;
+export default memo(Nav);

@@ -6,6 +6,7 @@ import YouTube from "react-youtube";
 import movieTrailer from "movie-trailer";
 import { wishlist, selectwishlist } from "../features/userSlice";
 import { useDispatch, useSelector } from "react-redux";
+import {memo} from 'react'
 
 function Rows({ title, url, originals }) {
   const [movies, setMovies] = useState([]);
@@ -180,4 +181,4 @@ function Rows({ title, url, originals }) {
     </div>
   );
 }
-export default Rows;
+export default memo(Rows) ;
