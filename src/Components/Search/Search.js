@@ -3,6 +3,7 @@ import "./Search.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import monica from "./monica.gif";
+import {debounce} from 'lodash'
 
 function Search() {
   const navigate = useNavigate();
@@ -21,9 +22,9 @@ function Search() {
     navigate("/profile");
   };
 
-  const handleChange = (e) => {
-    setSearchTerm(e);
-  };
+  const handleChange= debounce((e)=>{
+    setSearchTerm(e)
+  },1000)
 
   const handleSubmit = (e) => {
     e.preventDefault();
