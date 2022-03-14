@@ -22,6 +22,7 @@ function Rows({ title, url, originals }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     async function fetchData() {
       try {
         const request = await axios.get(baseUrl + url);
