@@ -6,7 +6,7 @@ import YouTube from "react-youtube";
 import movieTrailer from "movie-trailer";
 import { wishlist, selectwishlist } from "../features/userSlice";
 import { useDispatch, useSelector } from "react-redux";
-import {memo} from 'react'
+import { memo } from "react";
 
 function Rows({ title, url, originals }) {
   const [movies, setMovies] = useState([]);
@@ -19,11 +19,13 @@ function Rows({ title, url, originals }) {
   const [trailerUrl, setTrailerUrl] = useState("");
   const baseUrl = "https://api.themoviedb.org/3";
   const imageUrl = "https://image.tmdb.org/t/p/original";
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
       try {
         const request = await axios.get(baseUrl + url);
+        setLoading(false);
         setMovies(request.data.results);
       } catch (err) {
         setMovies([]);
@@ -110,75 +112,79 @@ function Rows({ title, url, originals }) {
 
   return (
     <div>
-      <div className="row">
-        <span className="title">{title}</span>
-        {movies === [] || movies === undefined ? (
-          <div style={{ color: "red" }}>Ooops...Network Error</div>
-        ) : (
-          <div className="row-posters">
-            {movies.map((movie) => {
-              return (
-                <img
-                  onClick={() => handleClick(movie)}
-                  className={`poster ${originals && "poster-originals"}`}
-                  key={movie.id}
-                  src={`${imageUrl}${
-                    originals ? movie.poster_path : movie.backdrop_path
-                  }`}
-                  alt={movie.name}
-                ></img>
-              );
-            })}
-          </div>
-        )}
+      {loading ? (
+        <div className="loading"></div>
+      ) : (
+        <div className="row">
+          <span className="title">{title}</span>
+          {movies === [] || movies === undefined ? (
+            <div style={{ color: "red" }}>Ooops...Network Error</div>
+          ) : (
+            <div className="row-posters">
+              {movies.map((movie) => {
+                return (
+                  <img
+                    onClick={() => handleClick(movie)}
+                    className={`poster ${originals && "poster-originals"}`}
+                    key={movie.id}
+                    src={`${imageUrl}${
+                      originals ? movie.poster_path : movie.backdrop_path
+                    }`}
+                    alt={movie.name}
+                  ></img>
+                );
+              })}
+            </div>
+          )}
 
-        {open ? (
-          <div className="selectedMovie">
-            <div
-              className="selectedMovie-image"
-              style={{
-                backgroundImage: `url(${imageUrl}${selectedMovie?.backdrop_path})`,
-              }}
-            >
-              <div className="selectedMovie-content">
-                <div className="left">
-                  <span className="selectedMovie-title">
-                    {selectedMovie?.title ||
-                      selectedMovie?.name ||
-                      selectedMovie?.original_name}
-                    (
-                    {selectedMovie?.first_air_date?.slice(0, 4) ||
-                      selectedMovie?.release_date.slice(0, 4)}
-                    )
-                  </span>
-                  <div className="selectedMovie-buttons">
-                    <button
-                      id="listbutton"
-                      className="selectedMovie-button"
-                      onClick={() => handleList(selectedMovie)}
-                    >
-                      {buttonText}
-                    </button>
+          {open ? (
+            <div className="selectedMovie">
+              <div
+                className="selectedMovie-image"
+                style={{
+                  backgroundImage: `url(${imageUrl}${selectedMovie?.backdrop_path})`,
+                }}
+              >
+                <div className="selectedMovie-content">
+                  <div className="left">
+                    <span className="selectedMovie-title">
+                      {selectedMovie?.title ||
+                        selectedMovie?.name ||
+                        selectedMovie?.original_name}
+                      (
+                      {selectedMovie?.first_air_date?.slice(0, 4) ||
+                        selectedMovie?.release_date.slice(0, 4)}
+                      )
+                    </span>
+                    <div className="selectedMovie-buttons">
+                      <button
+                        id="listbutton"
+                        className="selectedMovie-button"
+                        onClick={() => handleList(selectedMovie)}
+                      >
+                        {buttonText}
+                      </button>
+                    </div>
+                    <h1 className="selectedMovie-description">
+                      {selectedMovie?.overview}
+                    </h1>
                   </div>
-                  <h1 className="selectedMovie-description">
-                    {selectedMovie?.overview}
-                  </h1>
-                </div>
-                <div>
-                  <div className="right">
-                    <YouTube
-                      className="youtube"
-                      videoId={trailerUrl}
-                      opts={opts}
-                    ></YouTube>
+                  <div>
+                    <div className="right">
+                      <YouTube
+                        className="youtube"
+                        videoId={trailerUrl}
+                        opts={opts}
+                      ></YouTube>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        ) : null}
-      </div>
+          ) : null}
+        </div>
+      )}
     </div>
   );
 }
-export default memo(Rows) ;
+export default memo(Rows);
