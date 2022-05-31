@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Movies from "./Components/Home/Movies";
-//import LoginScreen from "./Components//Login/LoginScreen";
+import LoginScreen from "./Components//Login/LoginScreen";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect } from "react";
 import { auth } from "./Firebase";
@@ -35,7 +35,6 @@ function App() {
           {!user ? (
             <Route path="/" element={<LoginScreen />}></Route>
           ) : (
-
             <React.Fragment>
               <Route exact path="/" element={<Movies />}></Route>
               <Route path="/search" element={<Search />}></Route>
