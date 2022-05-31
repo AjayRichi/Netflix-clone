@@ -32,15 +32,13 @@ function App() {
     <div>
       <Router>
         <Routes>
-          {!user ? (
-            <Route path="/" element={<LoginScreen />}></Route>
-          ) : (
+          
             <React.Fragment>
               <Route exact path="/" element={<Movies />}></Route>
               <Route path="/search" element={<Search />}></Route>
               <Route path="/profile" element={<Profile />}></Route>
             </React.Fragment>
-          )}
+          
         </Routes>
       </Router>
     </div>
